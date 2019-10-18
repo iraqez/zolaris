@@ -1,0 +1,66 @@
+#https://www.haikson.com/programmirovanie/python/django-nginx-gunicorn-postgresql-docker/
+
+version: '3'
+
+# хранилища
+volumes:
+  postgresql-volume:  # pointing volume to db
+
+
+services:
+    nginx:
+  # при падении будет стараться подняться
+        restart: always
+  # только свежий nginx
+        image: nginx:latest
+  # слушает порт 8080
+        expose:
+          - 8080
+  # мапаем порт 80 на его 8080. Тогда сайт будет доступен по адресу localhost. Убедись, что порт у тебя не занят.
+        ports:
+          - "80:8080"
+  # монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать. Также директорию с логами и файл настройки, который мы подготовили.
+        volumes:
+            - ./static:/srv/www/zolaris/static
+            - ./media:/srv/www/zolaris/media
+            - ./logs:/srv/www/zolaris/logs
+            - ./nginx:/etc/nginx/conf.d
+  # и nginx зависит от контейнера python. Т.е. python должен быть запущен первым
+        depends_on:
+            - python
+    python:
+      depends_on:
+        - db
+      build: .
+      volumes:
+        - .:/zolarisapp  # djangoapp mounted to docker from current directory
+        - ./static:/static # adding static & media file for django
+        - ./media:/media
+      expose:
+        - 8000
+      ports:
+          - 8000:8000
+# запускаем gunicorn
+      command: ./entrypoint.sh
+
+    db:
+      image: postgres:10.1  # install postgre here
+      volumes:
+        - postgresql-volume:/var/lib/postgresql/data # avoid data removal when shut docker down we put volume in our local
+      ports:
+        - "5435:5432"  # pointing port 5435 from our environment to postgre default port 5432 in docker
+
+####################################################################################
+
+#    postgres:
+## Ниже даже расписывать не хочу, насколько все просто: логин, пароль, БД, порты и т.д.
+#        image: postgres:9.3.22
+#        ports:
+#            - 5432:5432
+#        environment:
+#            POSTGRES_USER: username
+#            POSTGRES_PASSWORD: postgresql_password
+#            POSTGRES_DB: database_name
+#            PGDATA: /var/lib/postgresql/data
+#        volumes:
+#            - pgdata:/var/lib/postgresql/data

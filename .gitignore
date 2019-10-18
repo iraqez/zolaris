@@ -2,3 +2,5 @@
 /venv/
 *.sqlite3
 .idea
+/static/admin/
+/assets/
