@@ -8,3 +8,4 @@
 /staticfiles
 /docker_compose_prod.env
 /docker_compose_dev.env
+/zolaris/development.env
