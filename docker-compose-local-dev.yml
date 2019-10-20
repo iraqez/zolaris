@@ -5,6 +5,8 @@ services:
     environment:
       - DJANGO_ENV=development
       - DEBUG_ENV=True
+      - DOMAIN=dev.zolaris.me-ua.com
+      - LETSENCRYPT_EMAIL=vladimir.gumenyuk@gmail.com
     env_file:
       - docker_compose_dev.env
 
@@ -13,3 +15,8 @@ services:
       - 5432
     env_file:
       - docker_compose_dev.env
+
+networks:
+    default:
+       external:
+         name: webproxy
