@@ -6,3 +6,5 @@
 /assets/
 /logs
 /staticfiles
+/docker_compose_prod.env
+/docker_compose_dev.env
