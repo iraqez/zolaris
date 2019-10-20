@@ -38,8 +38,8 @@ services:
       - ./media:/media
     expose:
       - 8000
-    ports:
-      - 8000:8000
+#    ports:
+#      - 8000:8000
     # запускаем gunicorn
     command: ./entrypoint.sh
 
