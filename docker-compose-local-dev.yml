@@ -3,10 +3,10 @@ version: "3"
 services:
   python:
     environment:
-      - DJANGO_ENV=development
-      - DEBUG_ENV=True
       - DOMAIN=dev.zolaris.me-ua.com
       - LETSENCRYPT_EMAIL=vladimir.gumenyuk@gmail.com
+      - VIRTUAL_HOST=dev.zolaris.me-ua.com
+      - LETSENCRYPT_HOST=dev.zolaris.me-ua.com
     env_file:
       - docker_compose_dev.env
 
