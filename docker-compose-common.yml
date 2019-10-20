@@ -20,6 +20,7 @@ services:
     # монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать. Также директорию с логами и файл настройки, который мы подготовили.
     volumes:
       - ./static:/srv/www/zolaris/static
+      - ./staticfiles:/srv/www/zolaris/staticfiles
       - ./media:/srv/www/zolaris/media
       - ./logs:/srv/www/zolaris/logs
       - ./nginx:/etc/nginx/conf.d
