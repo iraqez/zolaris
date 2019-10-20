@@ -8,7 +8,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=zolaris
       - POSTGRES_PORT=5432
-      - DEBUG = False
+      - DEBUG_ENV = False
 
   db:
     ports:

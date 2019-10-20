@@ -23,5 +23,5 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/landing/', permanent=True)),
     path('admin/', admin.site.urls),
     path('landing/', include('landing.urls')),
-    path('blog/', include('blog.urls', namespace='blog')),
+    # path('blog/', include('blog.urls', namespace='blog')),
 ]
