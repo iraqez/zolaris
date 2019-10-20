@@ -15,5 +15,5 @@ RUN pip3 install -r requirements.txt
 #set permission for our bash file
 RUN chmod +x ./entrypoint.sh
 
-ENTRYPOINT ["sh", "./entrypoint.sh"]  # we run django through this bashfile later
+ENTRYPOINT ["sh", "./entrypoint.sh"]
 
