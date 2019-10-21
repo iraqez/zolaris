@@ -19,3 +19,8 @@ services:
     env_file:
       - docker_compose_prod.env
 
+networks:
+    default:
+       external:
+         name: webproxy
+
