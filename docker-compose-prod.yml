@@ -9,6 +9,7 @@ services:
       - LETSENCRYPT_HOST=zolaris.me-ua.com
       - DJANGO_ENV=production
       - DEBUG_ENV=False
+
     env_file:
       - docker_compose_prod.env
 
