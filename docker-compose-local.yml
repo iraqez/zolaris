@@ -2,11 +2,8 @@ version: "3"
 
 services:
   nginx:
-    environment:
-      - DOMAIN=dev.zolaris.me-ua.com
-      - LETSENCRYPT_EMAIL=vladimir.gumenyuk@gmail.com
-      - VIRTUAL_HOST=dev.zolaris.me-ua.com
-      - LETSENCRYPT_HOST=dev.zolaris.me-ua.com
+    ports:
+      - "80:80"
   python:
     env_file:
       - docker_compose_dev.env
