@@ -4,7 +4,7 @@ from landing.models import Subscriber
 
 
 class SubscriberAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Subscriber._meta.fields]
+    list_display = ['name', 'email']
     list_filter = ["name", ]
     search_fields = ["email", ]
 

@@ -40,6 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # new
+
+    'allauth',  # new
+    'allauth.account',  # new
+    'allauth.socialaccount',  # new
+    'allauth.socialaccount.providers.github',  # new
+
+    #https://wsvincent.com/django-allauth-tutorial/
+    # include the providers you want to enable:
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.instagram',
+
     'environ',
     # 'blog',
     'landing',
@@ -56,6 +69,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'zolaris.urls'
+LOGIN_REDIRECT_URL = 'landing/'
+
 
 TEMPLATES = [
     {
@@ -73,6 +88,11 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 WSGI_APPLICATION = 'zolaris.wsgi.application'
 
@@ -117,6 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
